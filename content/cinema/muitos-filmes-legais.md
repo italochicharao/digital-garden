@@ -119,20 +119,35 @@ const dignidadeHumana = {
   aplicacao: "interpretação constitucional"
 }
 
-Se:
-P = Poder Estatal
-D = Direitos Fundamentais
+- - -
 
-Então:
+!(/uploads/photo-1455390582262-044cdead277a.jpg)
 
-P ≤ D
+---
 
-[[Estado Democrático]]
-[[Direitos Fundamentais]]
-[[Constituição Federal]]
-[[Liberdade]]
+## Conclusão
 
+A dignidade humana funciona como eixo organizador do sistema constitucional moderno.
 
-```
+Sem ela:
+- direitos perdem coerência
+- o Estado perde legitimidade
+- a democracia se torna apenas formal
 
-![Conclusão  A dignidade humana funciona como eixo organizador do sistema constitucional moderno.  Sem ela:  direitos perdem coerência o Estado perde legitimidade a democracia se torna apenas formal Metadados  Autor: Ítalo Última revisão: Maio 2026 Status: Em desenvolvimento Tags: direito, constituição, filosofia, política  Notas relacionadas Teoria do Estado Liberdade Individual Democracia Direitos Sociais](/uploads/photo-1455390582262-044cdead277a.jpg)
+---
+
+## Metadados
+
+**Autor:** Ítalo  
+**Última revisão:** Maio 2026  
+**Status:** Em desenvolvimento  
+**Tags:** direito, constituição, filosofia, política
+
+---
+
+# Notas relacionadas
+
+- Teoria do Estado
+- Liberdade Individual
+- Democracia
+- Direitos Sociais
