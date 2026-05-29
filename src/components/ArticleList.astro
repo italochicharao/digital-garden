@@ -1,0 +1,38 @@
+---
+import { formatDate } from '../utils';
+import { getCategoryLabel } from '../consts';
+
+interface Article {
+  slug: string;
+  title: string;
+  date: Date;
+  category: string;
+}
+
+interface Props {
+  articles: Article[];
+  showCategory?: boolean;
+}
+
+const { articles, showCategory = false } = Astro.props;
+---
+
+<table class="article-table">
+  <tbody>
+    {
+      articles.map((article) => (
+        <tr>
+          <td class="article-table__date">{formatDate(article.date)}</td>
+          <td class="article-table__title">
+            <a href={`/${article.category}/${article.slug}`}>
+              {showCategory && (
+                <span class="meta">{getCategoryLabel(article.category)} — </span>
+              )}
+              {article.title}
+            </a>
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

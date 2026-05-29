@@ -1,0 +1,19 @@
+---
+import { SITE_NAME, CATEGORIES } from '../consts';
+---
+
+<nav class="site-nav" aria-label="Principal">
+  <a href="/" class="site-nav__title">{SITE_NAME}</a>
+  <div class="site-nav__links">
+    {
+      CATEGORIES.map((cat, i) => (
+        <>
+          {i > 0 && <span class="site-nav__sep">|</span>}
+          <a href={`/${cat.slug}`}>{cat.label}</a>
+        </>
+      ))
+    }
+    <span class="site-nav__sep">|</span>
+    <a href="/sobre">Sobre</a>
+  </div>
+</nav>

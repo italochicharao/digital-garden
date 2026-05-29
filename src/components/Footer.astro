@@ -1,0 +1,16 @@
+---
+import { SITE_NAME, SITE_LOCATION } from '../consts';
+
+interface Props {
+  variant?: 'default' | 'home';
+}
+
+const { variant = 'default' } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class:list={['site-footer', variant === 'home' && 'site-footer--home']}>
+  <span>{year}</span>
+  <span>{SITE_NAME}</span>
+  <span>{SITE_LOCATION}</span>
+</footer>

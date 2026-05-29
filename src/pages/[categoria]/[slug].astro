@@ -1,0 +1,89 @@
+---
+import Article from '../../layouts/Article.astro';
+import { getCategoryLabel, type CategorySlug } from '../../consts';
+import { formatDate, getReadingTime, isCategorySlug } from '../../utils';
+import { getCategoryArticles } from '../../lib/content';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const slugs: CategorySlug[] = [
+    'contabilidade',
+    'direito',
+    'cinema',
+    'arte',
+    'musica',
+    'notas',
+  ];
+
+  const paths = await Promise.all(
+    slugs.map(async (categoria) => {
+      const articles = await getCategoryArticles(categoria);
+      return articles.map((entry) => ({
+        params: { categoria, slug: entry.id },
+        props: { categoria, entry },
+      }));
+    }),
+  );
+
+  return paths.flat();
+}
+
+const { categoria, slug } = Astro.params;
+const { entry } = Astro.props;
+
+if (!categoria || !isCategorySlug(categoria) || !entry) {
+  return Astro.redirect('/404');
+}
+
+const category = categoria as CategorySlug;
+const label = getCategoryLabel(category);
+const articles = await getCategoryArticles(category);
+const currentIndex = articles.findIndex((a) => a.id === slug);
+const prev = currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null;
+const next = currentIndex > 0 ? articles[currentIndex - 1] : null;
+
+const { Content } = await render(entry);
+const readingTime = getReadingTime(entry.body ?? '');
+---
+
+<Article title={entry.data.title}>
+  <header class="article-header">
+    <p class="article-breadcrumb">
+      <a href={`/${category}`}>{label}</a>
+      {' → '}
+      {entry.data.title}
+    </p>
+    <h1 class="article-header__title">{entry.data.title}</h1>
+    <p class="article-header__meta">
+      {formatDate(entry.data.date)} — {readingTime} min de leitura
+    </p>
+    <div class="article-header__rule" role="presentation"></div>
+  </header>
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  <div class="article-header__rule" role="presentation" style="margin-top: 2.5rem;"></div>
+
+  <nav class="article-nav" aria-label="Navegação entre artigos">
+    <div class="article-nav__prev">
+      {
+        prev ? (
+          <a href={`/${category}/${prev.id}`}>← {prev.data.title}</a>
+        ) : (
+          <span class="meta"> </span>
+        )
+      }
+    </div>
+    <div class="article-nav__next">
+      {
+        next ? (
+          <a href={`/${category}/${next.id}`}>{next.data.title} →</a>
+        ) : (
+          <span class="meta"> </span>
+        )
+      }
+    </div>
+  </nav>
+</Article>

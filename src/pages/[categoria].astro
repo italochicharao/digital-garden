@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleList from '../components/ArticleList.astro';
+import { getCategoryLabel, type CategorySlug } from '../consts';
+import { formatDate, isCategorySlug } from '../utils';
+import {
+  getCategoryArticles,
+  getCategoryIndex,
+  toListItem,
+} from '../lib/content';
+
+export async function getStaticPaths() {
+  const slugs: CategorySlug[] = [
+    'contabilidade',
+    'direito',
+    'cinema',
+    'arte',
+    'musica',
+    'notas',
+  ];
+  return slugs.map((categoria) => ({ params: { categoria } }));
+}
+
+const { categoria } = Astro.params;
+
+if (!categoria || !isCategorySlug(categoria)) {
+  return Astro.redirect('/404');
+}
+
+const category = categoria as CategorySlug;
+const articles = await getCategoryArticles(category);
+const index = await getCategoryIndex(category);
+const label = getCategoryLabel(category);
+const count = articles.length;
+const updated =
+  articles.length > 0 ? formatDate(articles[0].data.date) : '—';
+const listItems = articles.map((a) => toListItem(a, category));
+---
+
+<Base title={label}>
+  <header class="page-header">
+    <h1 class="page-header__title category-label">{label}</h1>
+    <div class="page-header__rule" role="presentation"></div>
+    <p class="page-header__meta">
+      {count} {count === 1 ? 'entrada' : 'entradas'} · atualizado em {updated}
+    </p>
+  </header>
+
+  {index?.description && (
+    <p class="category-index-item__desc" style="margin-bottom: 2rem;">
+      {index.description}
+    </p>
+  )}
+
+  <ArticleList articles={listItems} />
+</Base>

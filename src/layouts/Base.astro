@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_NAME } from '../consts';
+
+interface Props {
+  title?: string;
+  footerVariant?: 'default' | 'home';
+  showNav?: boolean;
+}
+
+const {
+  title,
+  footerVariant = 'default',
+  showNav = true,
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="arquivo de conhecimento pessoal" />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="site-wrap">
+      {showNav && <Nav />}
+      <main>
+        <slot />
+      </main>
+      <Footer variant={footerVariant} />
+    </div>
+  </body>
+</html>

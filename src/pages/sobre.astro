@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_NAME, SITE_TAGLINE } from '../consts';
+---
+
+<Base title="Sobre">
+  <header class="page-header">
+    <h1 class="page-header__title category-label">Sobre</h1>
+    <div class="page-header__rule" role="presentation"></div>
+  </header>
+
+  <div class="about-content prose">
+    <p>
+      <strong>{SITE_NAME}</strong> é um {SITE_TAGLINE} — um arquivo de textos,
+      notas e referências organizados por tema, sem pretensão de atualidade
+      contínua ou completude.
+    </p>
+    <p>
+      O conteúdo abrange contabilidade, direito, cinema, arte, música e notas
+      diversas. Cada entrada é datada e pode ser revisada ao longo do tempo.
+    </p>
+    <p>
+      Para editar entradas, acesse o <a href="/admin">painel de edição</a> após
+      a publicação no Netlify com autenticação configurada.
+    </p>
+  </div>
+</Base>

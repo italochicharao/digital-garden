@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_NAME, SITE_TAGLINE, CATEGORIES } from '../consts';
+import { formatDate } from '../utils';
+import { getAllArticles, getCategoryIndex } from '../lib/content';
+
+const recent = (await getAllArticles()).slice(0, 8);
+
+const categoryDescriptions = await Promise.all(
+  CATEGORIES.map(async (cat) => {
+    const index = await getCategoryIndex(cat.slug);
+    return {
+      ...cat,
+      description: index?.description ?? '',
+    };
+  }),
+);
+---
+
+<Base footerVariant="home" showNav={false}>
+  <header class="archive-header">
+    <h1 class="archive-header__title">{SITE_NAME}</h1>
+    <p class="archive-header__tagline">{SITE_TAGLINE}</p>
+    <div class="archive-header__rule" role="presentation"></div>
+    <p class="archive-header__categories">
+      {
+        CATEGORIES.map((c) => c.label).join(' · ')
+      }
+    </p>
+  </header>
+
+  <div class="two-columns">
+    <section>
+      <h2 class="column-section__heading">Índice</h2>
+      {
+        categoryDescriptions.map((cat) => (
+          <div class="category-index-item">
+            <a href={`/${cat.slug}`} class="category-index-item__name">
+              {cat.label}
+            </a>
+            {cat.description && (
+              <p class="category-index-item__desc">{cat.description}</p>
+            )}
+          </div>
+        ))
+      }
+    </section>
+
+    <section>
+      <h2 class="column-section__heading">Adicionado recentemente</h2>
+      <ul class="recent-list">
+        {
+          recent.map((entry) => (
+            <li class="recent-list__item">
+              <span class="recent-list__date">
+                {formatDate(entry.data.date)}
+              </span>
+              <a
+                href={`/${entry.category}/${entry.id}`}
+                class="recent-list__link"
+              >
+                {entry.data.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Base>
