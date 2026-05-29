@@ -32,6 +32,7 @@ const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
       href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap"
       rel="stylesheet"
     />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <div class="site-wrap">
@@ -40,6 +41,17 @@ const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
         <slot />
       </main>
       <Footer variant={footerVariant} />
+      <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
     </div>
   </body>
 </html>
