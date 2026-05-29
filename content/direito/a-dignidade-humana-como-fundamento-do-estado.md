@@ -1,11 +1,14 @@
 ---
 title: A Dignidade Humana Como Fundamento do Estado
 date: 2026-05-29T12:54:00.000-03:00
-summary: Leitura sobre a natureza humana
+summary: Uma análise sobre a dignidade humana como fundamento constitucional e
+  eixo interpretativo do Estado Democrático de Direito.
+tags:
+  - direito
+  - constituição
+  - filosofia
+  - política
 ---
-````md
-# A Dignidade Humana Como Fundamento do Estado
-
 ## Introdução
 
 A ideia de dignidade humana não surge apenas como um conceito jurídico, mas como uma tentativa histórica de proteger a experiência humana contra formas de violência institucional, econômica e simbólica.
@@ -102,10 +105,6 @@ Mesmo sem sofrer violência física direta, existe violação da dignidade human
 
 ---
 
-## Separador visual
-
----
-
 ## Código jurídico
 
 ```js
@@ -114,7 +113,7 @@ const dignidadeHumana = {
   artigo: "Art. 1º, III",
   aplicacao: "interpretação constitucional"
 }
-````
+```
 
 ---
 
@@ -134,16 +133,16 @@ P ≤ D
 
 ## Links internos
 
-* [[Estado Democrático]]
-* [[Direitos Fundamentais]]
-* [[Constituição Federal]]
-* [[Liberdade]]
+- [[Estado Democrático]]
+- [[Direitos Fundamentais]]
+- [[Constituição Federal]]
+- [[Liberdade]]
 
 ---
 
 ## Imagem
 
-![Constituição](https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80\&w=1200)
+![Constituição](https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200)
 
 ---
 
@@ -152,28 +151,24 @@ P ≤ D
 A dignidade humana funciona como eixo organizador do sistema constitucional moderno.
 
 Sem ela:
-
-* direitos perdem coerência
-* o Estado perde legitimidade
-* a democracia se torna apenas formal
+- direitos perdem coerência
+- o Estado perde legitimidade
+- a democracia se torna apenas formal
 
 ---
 
 ## Metadados
 
-**Autor:** Ítalo
-**Última revisão:** Maio 2026
-**Status:** Em desenvolvimento
+**Autor:** Ítalo  
+**Última revisão:** Maio 2026  
+**Status:** Em desenvolvimento  
 **Tags:** direito, constituição, filosofia, política
 
 ---
 
 # Notas relacionadas
 
-* Teoria do Estado
-* Liberdade Individual
-* Democracia
-* Direitos Sociais
-
-```
-```
+- Teoria do Estado
+- Liberdade Individual
+- Democracia
+- Direitos Sociais
